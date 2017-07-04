@@ -19,6 +19,14 @@ function buyCursor(){
     document.getElementById('cursorCost').innerHTML = nextCost;  //updates the cursor cost for the user
 };
 
+function saveGame() {
+  var save = {
+    cookies: cookies,
+    cursors: cursors
+  };
+  localStorage.setItem("save",JSON.stringify(save));
+};
+
 function loadGame() {
   var savegame = JSON.parse(localStorage.getItem("save"));
   if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
@@ -26,5 +34,6 @@ function loadGame() {
 };
 
 window.setInterval(function(){
+  saveGame();
 	cookieClick(cursors);
 }, 1000);
