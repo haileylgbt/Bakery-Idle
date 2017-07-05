@@ -1,4 +1,4 @@
-var dollars = 0;
+var dollars = 100;
 var cookies = 0;
 var open = false;
 var toggleCustomersWarned = false;
