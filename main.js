@@ -78,6 +78,25 @@ function loadGame(){
   alert("Let's pick up where we left off!");
 }
 
+function deleteSave(){
+	"use strict";
+	var deleteSave1 = prompt("Are you sure you want to do this? Type 'yes' if so.");
+	if(deleteSave1 === "yes"){
+		var deleteSave2 = prompt("Are you super sure that you want to start from the very beginning! Your save data cannot be restored! Type in the amount of starting cash you get at the beginning of the game if so.");
+    if (deleteSave2 === "100") {
+      var deleteSave3 = prompt("This is not prestiging! You will not gain any bonuses from doing this! Type in the creator of this game to completely obliberate your bakery.");
+      if (deleteSave3 === "Harry") {
+        alert("Alright then, don't say I didn't warn ya...");
+        localStorage.removeItem("save");
+		alert("Save deleted! Refresh the page to restart.");
+      }
+    }
+	}
+	else{
+		alert("Deletion Cancelled! *phew*");
+	}
+}
+
 window.setInterval(function(){
   saveGame();
 	buyCookie(customers);
