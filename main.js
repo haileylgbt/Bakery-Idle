@@ -19,20 +19,23 @@ function buyCursor(){
     document.getElementById('cursorCost').innerHTML = nextCost;  //updates the cursor cost for the user
 };
 
-function saveGame() {
-  var save = {
+function saveGame(data) {
+	"use strict";
+	var localSave = $.extend({
     cookies: cookies,
     cursors: cursors
-  };
-  localStorage.setItem("save",JSON.stringify(save));
-};
+  }, data);
+  return localSave;
+}
 
-function loadGame() {
-  var savegame = JSON.parse(localStorage.getItem("save"));
-  if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
-  if (typeof savegame.cursors !== "undefined") cookies = savegame.cursors;
-};
+function loadGame(savegame){
+	"use strict";
 
+	if(savegame){
+		if(typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
+    if(typeof savegame.cursors !== "undefined") cursors = savegame.cursors;
+  }
+}
 window.setInterval(function(){
   saveGame();
 	cookieClick(cursors);
