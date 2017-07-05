@@ -1,16 +1,33 @@
 var dollars = 0;
 var cookies = 0;
+var open = false;
+var toggleCustomersWarned = false;
 
 function cookieClick(number){
     cookies = cookies + number;
     document.getElementById("cookies").innerHTML = cookies;
 };
 
+function openClose() {
+  if (open === false) {
+    open = true;
+  } else if (open === true) {
+    open = false;
+  };
+};
+
 function buyCookie(number){
+  if (open === true) {
     cookies = cookies - customers;
     dollars = dollars + customers;
     document.getElementById("cookies").innerHTML = cookies;
     document.getElementById("dollars").innerHTML = dollars;
+  } else {
+    if (toggleCustomersWarned === false) {
+      alert("By the way, if you want to gain revenue, make sure your shop is open! (This message will not appear again this session)")
+      toggleCustomersWarned = true;
+    };
+  };
 };
 
 var customers = 0;
