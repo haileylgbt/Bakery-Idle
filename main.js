@@ -103,5 +103,7 @@ function deleteSave(){
 
 
 window.setInterval(function(){
-	buyCookie(customers);
+  if (cookies > 0) {
+  buyCookie(customers);
+  };
 }, 1000);
