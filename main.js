@@ -98,6 +98,5 @@ function deleteSave(){
 }
 
 window.setInterval(function(){
-  saveGame();
 	buyCookie(customers);
 }, 1000);
