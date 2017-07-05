@@ -9,19 +9,24 @@
 	</head>
 	<body  onload="loadGameOnStartup()">
     <div class="cookieCount">
-      <span id="cookies">0</span>
+      <span id="dollars">0</span>
     </div>
+    <div class="cookieSubtitle">dollars</div>
+    <br />
+		<div class="cookieCount">
+			<span id="cookies">0</span>
+		</div>
+		<div class="cookieSubtitle">cookies</div>
+		<br />
 		<button onclick="loadGame()">Load last second played</button>
 		<br />
-    <div class="cookieSubtitle">cookies</div>
-    <br />
-		<button onclick="cookieClick(1)">Click Me!</button>
+		<button onclick="cookieClick(1)">Bake Cookie</button>
 		<br />
-		<button onclick="buyCursor()">Buy Cursor</button>
+		<button onclick="buyCursor()">Advertise</button>
 		<br />
-		Cursors: <span id="cursors">0</span>
+		Customers: <span id="customers">0</span>
 		<br />
-		Cursor Cost: <span id="cursorCost">10</span>
+		Advertisement Cost: <span id="customerCost">10</span>
 		<script type="text/javascript" src="main.js"></script>
 	</body>
 </html>

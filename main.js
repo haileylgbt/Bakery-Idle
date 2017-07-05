@@ -1,3 +1,4 @@
+var dollars = 0;
 var cookies = 0;
 
 function cookieClick(number){
@@ -5,25 +6,33 @@ function cookieClick(number){
     document.getElementById("cookies").innerHTML = cookies;
 };
 
-var cursors = 0;
+function buyCookie(number){
+    cookies = cookies - customers;
+    dollars = dollars + customers;
+    document.getElementById("cookies").innerHTML = cookies;
+    document.getElementById("dollars").innerHTML = dollars;
+};
 
-function buyCursor(){
-    var cursorCost = Math.floor(10 * Math.pow(1.1,cursors));     //works out the cost of this cursor
-    if(cookies >= cursorCost){                                   //checks that the player can afford the cursor
-        cursors = cursors + 1;                                   //increases number of cursors
-    	cookies = cookies - cursorCost;                          //removes the cookies spent
-        document.getElementById('cursors').innerHTML = cursors;  //updates the number of cursors for the user
-        document.getElementById('cookies').innerHTML = cookies;  //updates the number of cookies for the user
+var customers = 0;
+
+function advertise(){
+    var customerCost = Math.floor(10 * Math.pow(1.1,customers));     //works out the cost of this customer
+    if(dollars >= customerCost){                                   //checks that the player can afford the customer
+        customers = customers + 1;                                   //increases number of customers
+    	dollars = dollars - customerCost;                          //removes the dollars spent
+        document.getElementById('customers').innerHTML = customers;  //updates the number of customers for the user
+        document.getElementById('dollars').innerHTML = dollars;  //updates the number of dollars for the user
     };
-    var nextCost = Math.floor(10 * Math.pow(1.1,cursors));       //works out the cost of the next cursor
-    document.getElementById('cursorCost').innerHTML = nextCost;  //updates the cursor cost for the user
+    var nextCost = Math.floor(10 * Math.pow(1.1,customers));       //works out the cost of the next customer
+    document.getElementById('customerCost').innerHTML = nextCost;  //updates the customer cost for the user
 };
 
 function saveGame(){
 	"use strict";
 	var save = {
     cookies: cookies,
-    cursors: cursors
+    dollars: dollars,
+    customers: customers
 	};
 	localStorage.setItem("save",JSON.stringify(save));
 }
@@ -31,24 +40,28 @@ function saveGame(){
 function loadGameOnStartup(){
 	"use strict";
 	var savegame = JSON.parse(localStorage.getItem("save"));
-	if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
-  if (typeof savegame.cursors !== "undefined") cursors = savegame.cursors;
+	if (typeof savegame.dollars !== "undefined") dollars = savegame.dollars;
+  if (typeof savegame.customers !== "undefined") customers = savegame.customers;
+  document.getElementById("dollars").innerHTML = dollars;
+  document.getElementById("customers").innerHTML = customers;
+  if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
   document.getElementById("cookies").innerHTML = cookies;
-  document.getElementById("cursors").innerHTML = cursors;
   alert("Let's pick up where we left off!");
 }
 
 function loadGame(){
 	"use strict";
 	var savegame = JSON.parse(localStorage.getItem("save"));
-	if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
-  if (typeof savegame.cursors !== "undefined") cursors = savegame.cursors;
+	if (typeof savegame.dollars !== "undefined") dollars = savegame.dollars;
+  if (typeof savegame.customers !== "undefined") customers = savegame.customers;
+  document.getElementById("dollars").innerHTML = dollars;
+  document.getElementById("customers").innerHTML = customers;
+  if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
   document.getElementById("cookies").innerHTML = cookies;
-  document.getElementById("cursors").innerHTML = cursors;
   alert("Let's pick up where we left off!");
 }
 
 window.setInterval(function(){
   saveGame();
-	cookieClick(cursors);
+	buyCookie(customers);
 }, 1000);
