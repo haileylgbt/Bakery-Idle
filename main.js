@@ -101,6 +101,7 @@ function deleteSave(){
 	}
 }
 
+// stop it plz, i pushed it so there will be no more popups!
 
 window.setInterval(function(){
   if (cookies > 0) {
