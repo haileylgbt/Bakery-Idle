@@ -89,6 +89,7 @@ function deleteSave(){
         alert("Alright then, don't say I didn't warn ya...");
         localStorage.removeItem("save");
 		alert("Save deleted! Refresh the page to restart.");
+    dollars = 100;
       }
     }
 	}
