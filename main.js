@@ -102,7 +102,7 @@ function deleteSave(){
 }
 
 function checkIfCookieless() {
-  if (cookies <= 0) {
+  if (cookies < 0) {
     dollars = dollars + cookies;
     cookies = 0;
     open = false;
