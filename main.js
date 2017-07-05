@@ -1,7 +1,7 @@
 var dollars = 100;
 var cookies = 0;
 var open = false;
-var toggleCustomersWarned = false;
+var toggleCustomersWarned = 0;
 
 function cookieClick(number){
     cookies = cookies + number;
@@ -9,6 +9,9 @@ function cookieClick(number){
 };
 
 function openClose() {
+  if (toggleCustomersWarned === 0) {
+    toggleCustomersWarned === false;
+  };
   if (open === false) {
     open = true;
   } else if (open === true) {
@@ -98,6 +101,16 @@ function deleteSave(){
 	}
 }
 
+function checkIfCookieless() {
+  if (cookies <= 0) {
+    dollars = dollars + cookies;
+    cookies = 0;
+    open = false;
+    alert("You've run out of cookies and had to temporarily close your bakery. Better get baking!");
+  }
+}
+
 window.setInterval(function(){
+  checkIfCookieless();
 	buyCookie(customers);
 }, 1000);
