@@ -28,6 +28,16 @@ function saveGame(){
 	localStorage.setItem("save",JSON.stringify(save));
 }
 
+function loadGameOnStartup(){
+	"use strict";
+	var savegame = JSON.parse(localStorage.getItem("save"));
+	if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
+  if (typeof savegame.cursors !== "undefined") cursors = savegame.cursors;
+  document.getElementById("cookies").innerHTML = cookies;
+  document.getElementById("cursors").innerHTML = cursors;
+  alert("Let's pick up where we left off!");
+}
+
 function loadGame(){
 	"use strict";
 	var savegame = JSON.parse(localStorage.getItem("save"));
@@ -35,7 +45,7 @@ function loadGame(){
   if (typeof savegame.cursors !== "undefined") cursors = savegame.cursors;
   document.getElementById("cookies").innerHTML = cookies;
   document.getElementById("cursors").innerHTML = cursors;
-  alert("Load Successful!");
+  alert("Let's pick up where we left off!");
 }
 
 window.setInterval(function(){
