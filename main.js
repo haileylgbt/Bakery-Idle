@@ -5,21 +5,34 @@ var muffins = 0;
 var open = false;
 var toggleCustomersWarned = 0;
 
-function productClick(product, number){
-    product = product + number;
-    document.getElementById(product).innerHTML = product;
+function cookieClick(number){
+    cookies = cookies + number;
+    document.getElementById("cookies").innerHTML = cookies;
 };
 
-function buyProduct(product, buyMtplr, sellMtplr){
+function buyCookie(){
   if (open === true) {
-    product = product - (customers * buyMtplr);
-    dollars = dollars + (customers * mtplr);
-    document.getElementById(product).innerHTML = product;
+    cookies = cookies - customers;
+    dollars = dollars + customers;
+    document.getElementById("cookies").innerHTML = cookies;
     document.getElementById("dollars").innerHTML = dollars;
 };
 
-function unlockProduct(product) {
-    var x = document.getElementById(product);
+function muffinClick(number){
+    muffins = muffins + number;
+    document.getElementById("muffins").innerHTML = muffins;
+};
+
+function buymMuffin(){
+  if (open === true) {
+    muffins = muffins - (customers * 2);
+    dollars = dollars + (customers * 1.5);
+    document.getElementById("muffins").innerHTML = muffins;
+    document.getElementById("dollars").innerHTML = dollars;
+};
+
+function unlockMuffins() {
+    var x = document.getElementById("muffins");
     if (x.style.display === 'none') {
         x.style.display = 'block';
     } else {
@@ -121,9 +134,9 @@ function deleteSave(){
 
 window.setInterval(function(){
   if (cookies > 0) {
-  buyProduct(cookies, 1, 1);
+  buyCookie(1);
   };
   if (muffins > 1) {
-  buyProduct(muffins, 2, 1.5);
+  buyMuffin(2);
   };
 }, 1000);
