@@ -20,7 +20,7 @@ function openClose() {
 };
 
 
-function buyCookie(number){
+function buyCookie(){
   if (open === true) {
     cookies = cookies - customers;
     dollars = dollars + customers;
@@ -33,10 +33,10 @@ function muffinClick(number){
     muffins = muffins + number;
     document.getElementById("muffins").innerHTML = muffins;
 };
-function buyMuffin(number){
+function buyMuffin(){
   if (open === true) {
-    muffins = muffins - customers;
-    dollars = dollars + customers;
+    muffins = muffins - (customers * 2);
+    dollars = dollars + (customers * 1.5);
     document.getElementById("muffins").innerHTML = muffins;
     document.getElementById("dollars").innerHTML = dollars;
   };
@@ -135,6 +135,9 @@ alert("Save deleted!");
 
 window.setInterval(function(){
   if (cookies > 0) {
-  buyCookie(customers);
+  buyCookie();
+  };
+  if (muffins > 1) {
+  buyMuffin();
   };
 }, 1000);
