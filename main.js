@@ -69,7 +69,7 @@ function saveGame(){
 
 function checkIfMuffinReady() {
   if (dollars >= 1000) {
-    var x = document.getElementByClassName('muffins');
+    var x = document.getElementsByClassName('muffins');
     x.style.display = 'inherit';
   }
 }
