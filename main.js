@@ -19,6 +19,7 @@ function openClose() {
   };
 };
 
+
 function buyCookie(number){
   if (open === true) {
     cookies = cookies - customers;
