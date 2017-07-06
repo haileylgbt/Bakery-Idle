@@ -140,4 +140,5 @@ window.setInterval(function(){
   if (muffins > 1) {
   buyMuffin();
   };
+  checkIfMuffinReady();
 }, 1000);
