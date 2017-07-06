@@ -123,10 +123,7 @@ window.setInterval(function(){
   if (cookies > 0) {
   buyProduct(cookies, 1, 1);
   };
-}, 1000);
-
-window.setInterval(function(){
-  if (muffins > 0) {
-  buyProduct(cookies, 2, 1);
+  if (muffins > 1) {
+  buyProduct(muffins, 2, 1.5);
   };
-}, 2000);
+}, 1000);
