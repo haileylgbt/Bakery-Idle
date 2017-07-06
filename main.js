@@ -93,6 +93,7 @@ function deleteSave(){
         localStorage.removeItem("save");
 		alert("Save deleted! Refresh the page to restart.");
     dollars = 100;
+    document.getElementById("dollars").innerHTML = dollars;
       }
     }
 	}
