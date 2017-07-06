@@ -142,5 +142,4 @@ window.setInterval(function(){
   buyMuffin();
   };
   checkIfMuffinReady();
-  document.getElementById("dollars").innerHTML = dollars;
 }, 1000);
