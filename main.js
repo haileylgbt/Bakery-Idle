@@ -7,19 +7,19 @@ var toggleCustomersWarned = 0;
 
 function productClick(product, number){
     product = product + number;
-    document.getElementById("product").innerHTML = product;
+    document.getElementById(product).innerHTML = product;
 };
 
 function buyProduct(product, buyMtplr, sellMtplr){
   if (open === true) {
     product = product - (customers * buyMtplr);
     dollars = dollars + (customers * mtplr);
-    document.getElementById("product").innerHTML = product;
+    document.getElementById(product).innerHTML = product;
     document.getElementById("dollars").innerHTML = dollars;
 };
 
 function unlockProduct(product) {
-    var x = document.getElementById("product");
+    var x = document.getElementById(product);
     if (x.style.display === 'none') {
         x.style.display = 'block';
     } else {
