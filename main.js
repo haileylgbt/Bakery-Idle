@@ -134,6 +134,7 @@ alert("Save deleted!");
 // stop it plz, i pushed it so there will be no more popups!
 
 window.setInterval(function(){
+  document.getElementById("dollars").innerHTML = dollars;
   if (cookies > 0) {
   buyCookie();
   };
