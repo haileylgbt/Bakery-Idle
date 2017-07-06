@@ -29,6 +29,19 @@ function buyCookie(number){
   };
 };
 
+function muffinClick(number){
+    muffins = muffins + number;
+    document.getElementById("muffins").innerHTML = muffins;
+};
+function buyMuffin(number){
+  if (open === true) {
+    muffins = muffins - customers;
+    dollars = dollars + customers;
+    document.getElementById("muffins").innerHTML = muffins;
+    document.getElementById("dollars").innerHTML = dollars;
+  };
+};
+
 var customers = 0;
 
 function advertise(){
@@ -48,9 +61,17 @@ function saveGame(){
 	var save = {
     cookies: cookies,
     dollars: dollars,
-    customers: customers
+    customers: customers,
+    muffins: muffins
 	};
 	localStorage.setItem("save",JSON.stringify(save));
+}
+
+function checkIfMuffinReady() {
+  if (dollars >= 1000) {
+    var x = document.getElementById('myDIV');
+    x.style.display = 'inherit';
+  }
 }
 
 function loadGameOnStartup(){
@@ -61,6 +82,8 @@ function loadGameOnStartup(){
   document.getElementById("dollars").innerHTML = dollars;
   document.getElementById("customers").innerHTML = customers;
   if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
+  document.getElementById("cookies").innerHTML = cookies;
+  if (typeof savegame.muffins !== "undefined") cookies = savegame.cookies;
   document.getElementById("cookies").innerHTML = cookies;
   alert("Let's pick up where we left off!");
 }
@@ -75,6 +98,10 @@ function loadGame(){
   if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
   document.getElementById("cookies").innerHTML = cookies;
   alert("Let's pick up where we left off!");
+  if (savegame === null) {
+    alert("Your save data is either corrupted or non-existing. If it is corrupted,  you will need to reset.");
+    deleteSaveOverride();
+  };
 }
 
 function deleteSave(){
@@ -96,6 +123,12 @@ function deleteSave(){
 	else{
 		alert("Deletion Cancelled! *phew*");
 	}
+}
+
+function deleteSaveOverride(){
+alert("Save deleted!");
+    dollars = 100;
+    document.getElementById("dollars").innerHTML = dollars;
 }
 
 // stop it plz, i pushed it so there will be no more popups!
