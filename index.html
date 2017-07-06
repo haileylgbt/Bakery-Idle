@@ -1,5 +1,7 @@
 <html>
 	<head>
+		<audio src="https://harrycode.github.io/Bakery-Idle/bgm.mp3" autoplay loop>
+	</audio>
 		<link rel="stylesheet" type="text/css" href="main.css" />
 		<meta charset="UTF-8">
   	<meta name="og:title" content="Bakery Idle">
@@ -8,15 +10,27 @@
 		<meta property="og:type" content="game">
 	</head>
 	<body  onload="loadGameOnStartup()">
-    <div class="cookieCount">
+    <div class="productCount">
       <span id="dollars">0</span>
     </div>
-    <div class="cookieSubtitle">dollars</div>
+    <div class="productName">dollars</div>
     <br />
-		<div class="cookieCount">
+		<div class="productCount">
 			<span id="cookies">0</span>
 		</div>
-		<div class="cookieSubtitle">cookies</div>
+		<div class="productName">cookies</div>
+		<br />
+		<div id="unlockable1">
+			<div class="productCount">
+				<span id="cookies">0</span>
+			</div>
+			<div class="productName">cookies</div>
+			<br />
+		</div>
+		<div class="customerCount">
+			<span id="customers">0</span>
+		</div>
+		<div class="customers">customers ($/sec.)</div>
 		<br />
 		<button onclick="saveGame()">Save</button>
 		<br />
@@ -24,11 +38,9 @@
 		<br />
 		<button onclick="openClose()">Toggle Customers</button>
 		<br />
-		<button onclick="cookieClick(1)">Bake Cookie</button>
+		<button onclick="productClick(cookies, 1)">Bake Cookie</button>
 		<br />
 		<button onclick="advertise()">Advertise</button>
-		<br />
-		Customers: <span id="customers">0</span>
 		<br />
 		Advertisement Cost: <span id="customerCost">10</span>
 		<button onclick="deleteSave()">Hard Cold Reset</button>

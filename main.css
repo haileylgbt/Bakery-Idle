@@ -1,11 +1,27 @@
-.cookieCount {
+.productCount {
   font-weight: bold;
   font-size: 70;
   font-family: Arial;
 }
 
-.cookieSubtitle {
+.productName {
   font-weight: bold;
   font-size: 20;
   font-family: Arial;
+}
+
+.customerCount {
+  font-weight: bold;
+  font-size: 35;
+  font-family: Arial;
+}
+
+.customers {
+  font-weight: bold;
+  font-size: 10;
+  font-family: Arial;
+}
+
+#muffins {
+
 }

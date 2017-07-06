@@ -1,11 +1,30 @@
 var dollars = 100;
 var cookies = 0;
+var muffinsUnlocked = false;
+var muffins = 0;
 var open = false;
 var toggleCustomersWarned = 0;
 
-function cookieClick(number){
-    cookies = cookies + number;
-    document.getElementById("cookies").innerHTML = cookies;
+function productClick(product, number){
+    product = product + number;
+    document.getElementById("product").innerHTML = product;
+};
+
+function buyProduct(product, buyMtplr, sellMtplr){
+  if (open === true) {
+    product = product - (customers * buyMtplr);
+    dollars = dollars + (customers * mtplr);
+    document.getElementById("product").innerHTML = product;
+    document.getElementById("dollars").innerHTML = dollars;
+};
+
+function unlockProduct(product) {
+    var x = document.getElementById("product");
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    };
 };
 
 function openClose() {
@@ -20,19 +39,7 @@ function openClose() {
 };
 
 
-function buyCookie(number){
-  if (open === true) {
-    cookies = cookies - customers;
-    dollars = dollars + customers;
-    document.getElementById("cookies").innerHTML = cookies;
-    document.getElementById("dollars").innerHTML = dollars;
-  } else {
-    if (toggleCustomersWarned === false) {
-      alert("By the way, if you want to gain revenue, make sure your shop is open! (This message will not appear again this session)")
-      toggleCustomersWarned = true;
-    };
-  };
-};
+
 
 var customers = 0;
 
@@ -53,7 +60,9 @@ function saveGame(){
 	var save = {
     cookies: cookies,
     dollars: dollars,
-    customers: customers
+    customers: customers,
+    muffinsUnlocked: muffinsUnlocked,
+    muffins: muffins
 	};
 	localStorage.setItem("save",JSON.stringify(save));
 }
@@ -67,7 +76,9 @@ function loadGameOnStartup(){
   document.getElementById("customers").innerHTML = customers;
   if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
   document.getElementById("cookies").innerHTML = cookies;
-  alert("Let's pick up where we left off!");
+  if (typeof savegame.muffins !== "undefined") muffins = savegame.muffins;
+  document.getElementById("muffins").innerHTML = muffins;
+  alert("Loading from last save...");
 }
 
 function loadGame(){
@@ -79,7 +90,9 @@ function loadGame(){
   document.getElementById("customers").innerHTML = customers;
   if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
   document.getElementById("cookies").innerHTML = cookies;
-  alert("Let's pick up where we left off!");
+  if (typeof savegame.muffins !== "undefined") muffins = savegame.muffins;
+  document.getElementById("muffins").innerHTML = muffins;
+  alert("Local save data loaded!");
 }
 
 function deleteSave(){
@@ -95,6 +108,7 @@ function deleteSave(){
 		alert("Save deleted!");
     dollars = 100;
     document.getElementById("dollars").innerHTML = dollars;
+    saveGame();
       }
     }
 	}
@@ -107,6 +121,12 @@ function deleteSave(){
 
 window.setInterval(function(){
   if (cookies > 0) {
-  buyCookie(customers);
+  buyProduct(cookies, 1, 1);
   };
 }, 1000);
+
+window.setInterval(function(){
+  if (muffins > 0) {
+  buyProduct(cookies, 2, 1);
+  };
+}, 2000);
