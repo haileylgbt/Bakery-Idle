@@ -92,7 +92,7 @@ function deleteSave(){
       if (deleteSave3 === "Harry") {
         alert("Alright then, don't say I didn't warn ya...");
         localStorage.removeItem("save");
-		alert("Save deleted! Refresh the page to restart.");
+		alert("Save deleted!");
     dollars = 100;
     document.getElementById("dollars").innerHTML = dollars;
       }
