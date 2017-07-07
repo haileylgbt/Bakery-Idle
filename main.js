@@ -24,7 +24,7 @@ function openClose() {
 
 
 function buyCookie(){
-  if (open === true) {
+  if (open === true && customers<=cookies) {
     cookies = cookies - customers;
     dollars = dollars + customers;
     document.getElementById("cookies").innerHTML = cookies;
