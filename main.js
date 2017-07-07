@@ -1,10 +1,9 @@
-var dollars = 100;
+var dollars = 100000000;
 var cookies = 0;
 var muffins = 0;
-var bakers = 0;
+var cakes = 0;
 var open = false;
 var toggleCustomersWarned = 0;
-var number = 0;
 
 function cookieClick(number){
     cookies = cookies + number;
@@ -24,18 +23,12 @@ function openClose() {
 
 
 function buyCookie(){
-  if (open === true && customers<=cookies) {
+  if (open === true) {
     cookies = cookies - customers;
     dollars = dollars + customers;
     document.getElementById("cookies").innerHTML = cookies;
     document.getElementById("dollars").innerHTML = dollars;
-  }
-	else {
-		dollars = dollars + cookies;
-		cookies = 0;
-    document.getElementById("cookies").innerHTML = cookies;
-    document.getElementById("dollars").innerHTML = dollars;
-	}
+  };
 };
 
 function muffinClick(number){
@@ -53,6 +46,25 @@ function buyMuffin(){
 		muffins = muffins - customers;
 		dollars = dollars + (customers * 2);
 		document.getElementById("muffins").innerHTML = muffins;
+		document.getElementById("dollars").innerHTML = dollars;
+	};
+  };
+};
+function cakeClick(number){
+  if (dollars >= 1000) {
+	cakes = cakes + number;
+	document.getElementById("cakes").innerHTML = cakes;
+	}
+	else {
+		alert("You cant bake cakes until you get enough money!");
+	};
+};
+function buyCake(){
+  if (dollars >= 1000) {
+	if (open === true) {
+		cakes = cakes - customers;
+		dollars = dollars + (customers * 3);
+		document.getElementById("cakes").innerHTML = cakes;
 		document.getElementById("dollars").innerHTML = dollars;
 	};
   };
@@ -75,6 +87,22 @@ function advertise(){
     document.getElementById('customerCost').innerHTML = nextCost;  //updates the customer cost for the user
 };
 
+var hireCount = 1
+function hire(){
+    if(dollars >= 3000){                                   //checks that the player can afford the customer
+        cookies = cookies + 500;                                   //increases number of customers
+    	dollars = dollars - (10 * hireCount);                          //removes the dollars spent
+		hireCount = hireCount + 1
+        document.getElementById('cookies').innerHTML = cookies;  //updates the number of customers for the user
+        document.getElementById('dollars').innerHTML = dollars;  //updates the number of dollars for the user
+		document.getElementById('hireCount').innerHTML = hireCount;  //updates the number of dollars for the user
+		if (dollars >= 10000) {
+			muffins = muffins + 500
+			dollars = dollars - 200
+		};
+    };
+};
+
 
 function saveGame(){
 	"use strict";
@@ -82,7 +110,9 @@ function saveGame(){
     cookies: cookies,
     dollars: dollars,
     customers: customers,
-    muffins: muffins
+    muffins: muffins,
+	cakes: cakes,
+	hireCount: hireCount
 	};
 	localStorage.setItem("save",JSON.stringify(save));
 }
@@ -98,6 +128,10 @@ function loadGameOnStartup(){
   document.getElementById("cookies").innerHTML = cookies;
   if (typeof savegame.muffins !== "undefined") cookies = savegame.cookies;
   document.getElementById("muffins").innerHTML = muffins;
+  if (typeof savegame.cakes !== "undefined") cookies = savegame.cookies;
+  document.getElementById("cakes").innerHTML = cakes;
+  if (typeof savegame.hireCount !== "undefined") cookies = savegame.cookies;
+  document.getElementById("hireCount").innerHTML = hireCount;
   alert("Let's pick up where we left off!");
 }
 
@@ -112,6 +146,10 @@ function loadGame(){
   document.getElementById("cookies").innerHTML = cookies;
   if (typeof savegame.muffins !== "undefined") cookies = savegame.cookies;
   document.getElementById("muffins").innerHTML = muffins;
+  if (typeof savegame.cakes !== "undefined") cookies = savegame.cookies;
+  document.getElementById("cakes").innerHTML = cakes;
+  if (typeof savegame.hireCount !== "undefined") cookies = savegame.cookies;
+  document.getElementById("hireCount").innerHTML = hireCount;
   alert("Let's pick up where we left off!");
   if (savegame === null) {
     alert("Your save data is either corrupted or non-existing. If it is corrupted,  you will need to reset.");
@@ -155,6 +193,9 @@ window.setInterval(function(){
   };
   if (muffins > 1) {
   buyMuffin();
+  };
+  if (cakes > 2) {
+  buyCake();
   };
   checkIfMuffinReady();
 }, 1000);
