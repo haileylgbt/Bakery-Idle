@@ -1,5 +1,6 @@
 var dollars = 100;
 var cookies = 0;
+var muffins = 0;
 var open = false;
 var toggleCustomersWarned = 0;
 
@@ -35,8 +36,8 @@ function muffinClick(number){
 };
 function buyMuffin(){
   if (open === true) {
-    muffins = muffins - (customers * 2);
-    dollars = dollars + (customers * 1.5);
+    muffins = muffins - customers;
+    dollars = dollars + (customers * 2);
     document.getElementById("muffins").innerHTML = muffins;
     document.getElementById("dollars").innerHTML = dollars;
   };
@@ -67,13 +68,6 @@ function saveGame(){
 	localStorage.setItem("save",JSON.stringify(save));
 }
 
-function checkIfMuffinReady() {
-  if (dollars >= 1000) {
-    var x = document.getElementsByClassName('muffins');
-    x.style.display = 'block';
-  }
-}
-
 function loadGameOnStartup(){
 	"use strict";
 	var savegame = JSON.parse(localStorage.getItem("save"));
@@ -84,7 +78,7 @@ function loadGameOnStartup(){
   if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
   document.getElementById("cookies").innerHTML = cookies;
   if (typeof savegame.muffins !== "undefined") cookies = savegame.cookies;
-  document.getElementById("cookies").innerHTML = cookies;
+  document.getElementById("muffins").innerHTML = muffins;
   alert("Let's pick up where we left off!");
 }
 
