@@ -1,8 +1,10 @@
 var dollars = 100;
 var cookies = 0;
 var muffins = 0;
+var bakers = 0;
 var open = false;
 var toggleCustomersWarned = 0;
+var number = 0;
 
 function cookieClick(number){
     cookies = cookies + number;
@@ -31,15 +33,22 @@ function buyCookie(){
 };
 
 function muffinClick(number){
-    muffins = muffins + number;
-    document.getElementById("muffins").innerHTML = muffins;
+	if (dollars >= 200) {
+		muffins = muffins + number;
+		document.getElementById("muffins").innerHTML = muffins;
+	}
+	else {
+		alert("You cant bake muffins until you get enough money!");
+	};
 };
 function buyMuffin(){
-  if (open === true) {
-    muffins = muffins - customers;
-    dollars = dollars + (customers * 2);
-    document.getElementById("muffins").innerHTML = muffins;
-    document.getElementById("dollars").innerHTML = dollars;
+  if (dollars >= 200) {
+	if (open === true) {
+		muffins = muffins - customers;
+		dollars = dollars + (customers * 2);
+		document.getElementById("muffins").innerHTML = muffins;
+		document.getElementById("dollars").innerHTML = dollars;
+	};
   };
 };
 
@@ -52,10 +61,14 @@ function advertise(){
     	dollars = dollars - customerCost;                          //removes the dollars spent
         document.getElementById('customers').innerHTML = customers;  //updates the number of customers for the user
         document.getElementById('dollars').innerHTML = dollars;  //updates the number of dollars for the user
+		if (customers >= 10) {
+			customers = customers + 1
+		};
     };
     var nextCost = Math.floor(10 * Math.pow(1.1,customers));       //works out the cost of the next customer
     document.getElementById('customerCost').innerHTML = nextCost;  //updates the customer cost for the user
 };
+
 
 function saveGame(){
 	"use strict";
@@ -91,6 +104,8 @@ function loadGame(){
   document.getElementById("customers").innerHTML = customers;
   if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
   document.getElementById("cookies").innerHTML = cookies;
+  if (typeof savegame.muffins !== "undefined") cookies = savegame.cookies;
+  document.getElementById("muffins").innerHTML = muffins;
   alert("Let's pick up where we left off!");
   if (savegame === null) {
     alert("Your save data is either corrupted or non-existing. If it is corrupted,  you will need to reset.");
