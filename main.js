@@ -28,6 +28,9 @@ function buyCookie(){
     dollars = dollars + customers;
     document.getElementById("cookies").innerHTML = cookies;
     document.getElementById("dollars").innerHTML = dollars;
+	  if (cookies <= 0) {
+		  cookies = 0
+	  };
   };
 };
 
@@ -47,6 +50,9 @@ function buyMuffin(){
 		dollars = dollars + (customers * 2);
 		document.getElementById("muffins").innerHTML = muffins;
 		document.getElementById("dollars").innerHTML = dollars;
+		if (muffins <= 0) {
+			muffins = 0
+		};
 	};
   };
 };
@@ -66,6 +72,9 @@ function buyCake(){
 		dollars = dollars + (customers * 3);
 		document.getElementById("cakes").innerHTML = cakes;
 		document.getElementById("dollars").innerHTML = dollars;
+		if (cakes <= 0) {
+			cakes = 0
+		};
 	};
   };
 };
