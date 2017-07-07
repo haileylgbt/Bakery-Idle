@@ -24,12 +24,18 @@ function openClose() {
 
 
 function buyCookie(){
-  if (open === true) {
+  if (open === true && customers<=cookies) {
     cookies = cookies - customers;
     dollars = dollars + customers;
     document.getElementById("cookies").innerHTML = cookies;
     document.getElementById("dollars").innerHTML = dollars;
-  };
+  }
+	else {
+		dollars = dollars + cookies;
+		cookies = 0;
+    document.getElementById("cookies").innerHTML = cookies;
+    document.getElementById("dollars").innerHTML = dollars;
+	}
 };
 
 function muffinClick(number){
