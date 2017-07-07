@@ -1,4 +1,4 @@
-var dollars = 100000000;
+var dollars = 100;
 var cookies = 0;
 var muffins = 0;
 var cakes = 0;
